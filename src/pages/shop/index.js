@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import DefaultLayout from "../../layouts/default";
 import { Container } from "@material-ui/core";
 import SHOP_DATA from "./shop.data";
+import Collections from "../../components/collections-container/collections.component";
 
 export default class Shop extends Component {
    state = {
@@ -13,7 +14,7 @@ export default class Shop extends Component {
          <DefaultLayout>
             <Container>
                <main>
-                  <h1>Shop</h1>
+                  <Collections collections={this.state.collections} />
                </main>
             </Container>
          </DefaultLayout>
