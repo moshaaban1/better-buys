@@ -16,13 +16,13 @@ export default function Button({ color, size, children, clicked }) {
    }
    switch (size) {
       case "lg":
-         btnStyle.padding = "20px 25px";
+         btnStyle.padding = "20px 35px";
          break;
       case "md":
-         btnStyle.padding = "15px 20px";
+         btnStyle.padding = "15px 30px";
          break;
       default:
-         btnStyle.padding = "10px 15px";
+         btnStyle.padding = "10px 20px";
    }
    return (
       <button className="btn" style={btnStyle} onClick={clicked}>
