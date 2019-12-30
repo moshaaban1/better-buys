@@ -1,3 +1,4 @@
+/* Normalize */
 html {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
@@ -34,4 +35,10 @@ body {
 
 body::backdrop {
     background-color: #fafafa;
+}
+
+/* Global Style */
+
+.page-content {
+    padding: 60px 0;
 }
