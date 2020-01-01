@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import DefaultLayout from "../../layouts/default";
 import { Container } from "@material-ui/core";
 import Button from "../../components/button/button.component";
+import FormInput from "../../components/form-input/form-input.component";
+import "./index.styles.scss";
 export default class SignIn extends Component {
    state = {
       email: "",
@@ -22,28 +24,30 @@ export default class SignIn extends Component {
          <DefaultLayout>
             <main className="page-content">
                <Container>
-                  <div className="sing-in">
-                     <h2>I already have an account</h2>
+                  <div className="sign-in">
+                     <h2 className="title">I already have an account</h2>
                      <span>Sign in with your email and password</span>
                      <form className="form" onSubmit={this.handleSubmit}>
-                        <input
+                        <FormInput
                            type="email"
                            name="email"
                            value={this.state.email}
-                           onChange={this.handleChange}
+                           handleChange={this.handleChange}
+                           label="Email"
                            required
                         />
-                        <input
+                        <FormInput
                            type="password"
                            name="password"
                            value={this.state.password}
-                           onChange={this.handleChange}
+                           handleChange={this.handleChange}
+                           label="Password"
                            required
                         />
-                        <Button color="dark" size="md">
+                        <Button color="dark" size="md" width="100%">
                            {"Sign in".toUpperCase()}
                         </Button>
-                        <Button color="primary" size="md">
+                        <Button color="primary" size="md" width="100%">
                            {"sign in with google".toUpperCase()}
                         </Button>
                      </form>
