@@ -1,10 +1,11 @@
 import React from "react";
 
-export default function Button({ color, size, children, clicked }) {
+export default function Button({ color, size, children, clicked, width }) {
    const btnStyle = {
       border: "none",
       cursor: "pointer",
-      outline: "none"
+      outline: "none",
+      width: width
    };
    switch (color) {
       case "dark":
