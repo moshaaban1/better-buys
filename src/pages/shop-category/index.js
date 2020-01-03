@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import DefaultLayout from "../../layouts/default";
 import { Container } from "@material-ui/core";
-import Products from "../../components/products/products.component.jsx";
+import Products from "../../components/products/products.component";
 
 export default class Shop extends Component {
    state = {
@@ -10,14 +9,12 @@ export default class Shop extends Component {
 
    render() {
       return (
-         <DefaultLayout>
+         <main>
             <Container>
-               <main>
-                  <h1>{this.props.match.params.category.toUpperCase()}</h1>
-                  <Products products={this.state.products} />
-               </main>
+               <h1>{this.props.match.params.category.toUpperCase()}</h1>
+               <Products products={this.state.products} />
             </Container>
-         </DefaultLayout>
+         </main>
       );
    }
 }
