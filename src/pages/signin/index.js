@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import DefaultLayout from "../../layouts/default";
 import { Container } from "@material-ui/core";
 import Button from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.component";
+import { signInWithGoogle, auth } from "../../firebase/firebase.utils";
 import "./index.styles.scss";
 export default class SignIn extends Component {
    state = {
@@ -17,44 +17,65 @@ export default class SignIn extends Component {
 
    handleSubmit = e => {
       e.preventDefault();
+      auth
+         .signInWithEmailAndPassword(this.state.email, this.state.password)
+         .then(res => {
+            console.log(res);
+         })
+         .catch(error => {
+            console.log(error);
+         });
+   };
+
+   signInWithGoogle = () => {
+      signInWithGoogle()
+         .then(result => {
+            console.log(result);
+         })
+         .catch(error => {
+            console.log(error);
+         });
    };
 
    render() {
       return (
-         <DefaultLayout>
-            <main className="page-content">
-               <Container>
-                  <div className="sign-in">
-                     <h2 className="title">I already have an account</h2>
-                     <span>Sign in with your email and password</span>
-                     <form className="form" onSubmit={this.handleSubmit}>
-                        <FormInput
-                           type="email"
-                           name="email"
-                           value={this.state.email}
-                           handleChange={this.handleChange}
-                           label="Email"
-                           required
-                        />
-                        <FormInput
-                           type="password"
-                           name="password"
-                           value={this.state.password}
-                           handleChange={this.handleChange}
-                           label="Password"
-                           required
-                        />
-                        <Button color="dark" size="md" width="100%">
-                           {"Sign in".toUpperCase()}
-                        </Button>
-                        <Button color="primary" size="md" width="100%">
-                           {"sign in with google".toUpperCase()}
-                        </Button>
-                     </form>
-                  </div>
-               </Container>
-            </main>
-         </DefaultLayout>
+         <main className="page-content">
+            <Container>
+               <div className="sign-in">
+                  <h2 className="title">I already have an account</h2>
+                  <span>Sign in with your email and password</span>
+                  <form className="form" onSubmit={this.handleSubmit}>
+                     <FormInput
+                        type="email"
+                        name="email"
+                        value={this.state.email}
+                        handleChange={this.handleChange}
+                        label="Email"
+                        required
+                     />
+                     <FormInput
+                        type="password"
+                        name="password"
+                        value={this.state.password}
+                        handleChange={this.handleChange}
+                        label="Password"
+                        required
+                     />
+                     <Button color="dark" size="md" width="100%">
+                        {"Sign in".toUpperCase()}
+                     </Button>
+                  </form>
+                  <Button
+                     color="primary"
+                     size="md"
+                     width="100%"
+                     onClick={signInWithGoogle}
+                  >
+                     {"sign in with google".toUpperCase()}
+                  </Button>
+               </div>
+            </Container>
+         </main>
       );
    }
 }
