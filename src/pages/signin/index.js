@@ -20,7 +20,7 @@ export default class SignIn extends Component {
       auth
          .signInWithEmailAndPassword(this.state.email, this.state.password)
          .then(res => {
-            console.log(res);
+            console.log("Sign in successful");
          })
          .catch(error => {
             console.log(error);
@@ -30,7 +30,7 @@ export default class SignIn extends Component {
    signInWithGoogle = () => {
       signInWithGoogle()
          .then(result => {
-            console.log(result);
+            console.log("Sign in successful");
          })
          .catch(error => {
             console.log(error);

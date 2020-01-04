@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import { Container } from "@material-ui/core";
 import Button from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.component";
-export default class SignIn extends Component {
+import { auth, createUserProfile } from "../../firebase/firebase.utils";
+export default class SignUp extends Component {
    state = {
-      email: "",
-      password: ""
+      name: "ahmed",
+      email: "@gmail.com",
+      password: "123456",
+      confirmPassword: "123456"
    };
 
    handleChange = e => {
@@ -13,8 +16,33 @@ export default class SignIn extends Component {
       this.setState({ [name]: value });
    };
 
-   handleSubmit = e => {
+   handleSubmit = async e => {
       e.preventDefault();
+
+      const { name, email, password, confirmPassword } = this.state;
+
+      if (password !== confirmPassword) {
+         console.log("Password don't match");
+         return;
+      }
+
+      try {
+         const { user } = await auth.createUserWithEmailAndPassword(
+            email,
+            password
+         );
+
+         Object.defineProperties(user, {
+            displayName: {
+               value: name,
+               writable: true
+            }
+         });
+
+         createUserProfile(user);
+      } catch (error) {
+         console.error(error);
+      }
    };
 
    render() {
@@ -23,8 +51,16 @@ export default class SignIn extends Component {
             <Container>
                <div className="sign-in">
                   <h2 className="title">I don't have an account</h2>
-                  <span>Sign up with your email and password</span>
+                  <span>Register a new account</span>
                   <form className="form" onSubmit={this.handleSubmit}>
+                     <FormInput
+                        type="text"
+                        name="name"
+                        value={this.state.name}
+                        handleChange={this.handleChange}
+                        label="Name"
+                        required
+                     />
                      <FormInput
                         type="email"
                         name="email"
@@ -41,8 +77,16 @@ export default class SignIn extends Component {
                         label="Password"
                         required
                      />
+                     <FormInput
+                        type="password"
+                        name="confirmPassword"
+                        value={this.state.confirmPassword}
+                        handleChange={this.handleChange}
+                        label="Confirm Password"
+                        required
+                     />
                      <Button color="dark" size="md" width="100%">
-                        {"Sign in".toUpperCase()}
+                        {"Sign Up".toUpperCase()}
                      </Button>
                   </form>
                </div>
