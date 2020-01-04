@@ -2,28 +2,22 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Container } from "@material-ui/core";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
+import { auth } from "../../firebase/firebase.utils";
 import Logo from "../../assets/images/logo.svg";
 import "./navbar.style.scss";
 
-export default function navbar() {
-   const navbarLinks = [
-      {
-         href: "/shop",
-         label: "shop"
-      },
-      {
-         href: "/signUp",
-         label: "sign up"
-      },
-      {
-         href: "/signIn",
-         label: "sign in"
-      },
-      {
-         href: "/checkout",
-         label: "cart"
-      }
-   ];
+export default function navbar({ user }) {
+   const signOut = () => {
+      auth
+         .signOut()
+         .then(function() {
+            console.log("Sign-out successful.");
+         })
+         .catch(function(error) {
+            console.log("An error happened.");
+         });
+   };
+
    return (
       <nav className="navbar">
          <Container
@@ -40,17 +34,30 @@ export default function navbar() {
             </Link>
 
             <ul className="navbar__links">
-               {navbarLinks.map(link => (
-                  <li key={link.label}>
-                     {link.label === "cart" ? (
-                        <Link to={link.href}>
-                           <LocalMallIcon />
-                        </Link>
-                     ) : (
-                        <Link to={link.href}>{link.label}</Link>
-                     )}
+               <li>
+                  <Link to="/shop">Shop</Link>
+               </li>
+               {user ? (
+                  <li>
+                     <Link onClick={signOut} to="">
+                        Sign out
+                     </Link>
                   </li>
-               ))}
+               ) : (
+                  <>
+                     <li>
+                        <Link to="/signin">sign in</Link>
+                     </li>
+                     <li>
+                        <Link to="/signup">sign up</Link>
+                     </li>
+                  </>
+               )}
+               <li>
+                  <Link to="/checkout">
+                     <LocalMallIcon />
+                  </Link>
+               </li>
             </ul>
          </Container>
       </nav>
