@@ -1,15 +1,27 @@
 import React from "react";
 
-export default function Button({ color, size, children, clicked, width }) {
+export default function Button({
+   color,
+   size,
+   children,
+   clicked,
+   width,
+   ...otherProps
+}) {
    const btnStyle = {
       border: "none",
       cursor: "pointer",
       outline: "none",
-      width: width
+      width: width,
+      marginBottom: "10px"
    };
    switch (color) {
       case "dark":
          btnStyle.backgroundColor = "#000";
+         btnStyle.color = "#fff";
+         break;
+      case "primary":
+         btnStyle.backgroundColor = "#3f51b5";
          btnStyle.color = "#fff";
          break;
       default:
@@ -26,7 +38,7 @@ export default function Button({ color, size, children, clicked, width }) {
          btnStyle.padding = "10px 20px";
    }
    return (
-      <button className="btn" style={btnStyle} onClick={clicked}>
+      <button className="btn" style={btnStyle} {...otherProps}>
          {children}
       </button>
    );
