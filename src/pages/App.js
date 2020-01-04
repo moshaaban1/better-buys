@@ -48,12 +48,3 @@ class App extends React.Component {
 }
 
 export default App;
-{
-   /* <Route
-   exact
-   path={route.path}
-   user={this.state.currentUser}
-   component={route.component}
-   key={route.component}
-/>; */
-}
