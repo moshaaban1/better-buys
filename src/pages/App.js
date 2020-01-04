@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import DefaultLayout from "../layouts/default";
-import { auth } from "../firebase/firebase.utils";
+import { auth, createUserProfile } from "../firebase/firebase.utils";
 import "./App.style.css";
 
 import routes from "../routes";
@@ -12,8 +12,15 @@ class App extends React.Component {
    };
 
    componentDidMount() {
-      auth.onAuthStateChanged(user => {
-         this.setState({ currentUser: user });
+      auth.onAuthStateChanged(userAuth => {
+         if (userAuth) {
+            createUserProfile(userAuth).then(userRef => {
+               userRef.onSnapshot(snapShot => {
+                  this.setState({ currentUser: snapShot.data() });
+               });
+            });
+         }
+         this.setState({ currentUser: null });
       });
    }
 
@@ -21,12 +28,13 @@ class App extends React.Component {
       return (
          <>
             <BrowserRouter basename={process.env.PUBLIC_URL}>
-               <DefaultLayout>
+               <DefaultLayout user={this.state.currentUser}>
                   <Switch>
                      {routes.map(route => (
                         <Route
                            exact
                            path={route.path}
+                           user={this.state.currentUser}
                            component={route.component}
                            key={route.component}
                         />
@@ -40,3 +48,12 @@ class App extends React.Component {
 }
 
 export default App;
+{
+   /* <Route
+   exact
+   path={route.path}
+   user={this.state.currentUser}
+   component={route.component}
+   key={route.component}
+/>; */
+}
