@@ -4,9 +4,11 @@ const INITIAL_STATE = {
 
 const userReducer = (state = INITIAL_STATE, action) => {
    switch (action.type) {
-      case "ADD_TODO":
-         console.log(action.payload);
-         break;
+      case "SET_CURRENT_USER":
+         return {
+            ...state,
+            currentUser: action.payload
+         };
 
       default:
          return state;
