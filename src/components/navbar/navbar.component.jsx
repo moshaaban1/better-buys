@@ -44,7 +44,7 @@ function Navbar(props) {
                </li>
                {props.user ? (
                   <li>
-                     <Link onClick={signOut} to="">
+                     <Link onClick={signOut} to="/signIn">
                         Sign out
                      </Link>
                   </li>

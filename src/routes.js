@@ -9,7 +9,8 @@ import NotFound from "./pages/404/index";
 const routes = [
    {
       path: "/",
-      component: Home
+      component: Home,
+      exact: true
    },
    {
       path: "/shop/",
@@ -21,10 +22,12 @@ const routes = [
    },
    {
       path: "/signIn",
+      auth: true,
       component: SignIn
    },
    {
       path: "/signUp",
+      auth: true,
       component: SignUp
    },
    {
