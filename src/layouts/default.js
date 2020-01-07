@@ -5,7 +5,7 @@ import Footer from "../components/footer/footer.component.jsx";
 function defaultLayout(props) {
    return (
       <>
-         <Navbar user={props.user} />
+         <Navbar />
          {props.children}
          <Footer />
       </>

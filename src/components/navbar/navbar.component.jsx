@@ -3,15 +3,20 @@ import { Link } from "react-router-dom";
 import { Container } from "@material-ui/core";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
 import { auth } from "../../firebase/firebase.utils";
+import { connect } from "react-redux";
 import Logo from "../../assets/images/logo.svg";
 import "./navbar.style.scss";
 
-export default function navbar({ user }) {
+function Navbar(props) {
    const signOut = () => {
       auth
          .signOut()
          .then(function() {
             console.log("Sign-out successful.");
+            props.dispatch({
+               type: "SET_USER",
+               payload: null
+            });
          })
          .catch(function(error) {
             console.log("An error happened.");
@@ -37,7 +42,7 @@ export default function navbar({ user }) {
                <li>
                   <Link to="/shop">Shop</Link>
                </li>
-               {user ? (
+               {props.user ? (
                   <li>
                      <Link onClick={signOut} to="">
                         Sign out
@@ -63,3 +68,9 @@ export default function navbar({ user }) {
       </nav>
    );
 }
+
+const mapStateToProps = state => ({
+   user: state.user.user
+});
+
+export default connect(mapStateToProps)(Navbar);
