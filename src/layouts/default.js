@@ -1,13 +1,13 @@
 import React from "react";
 import Navbar from "../components/navbar/navbar.component";
-import Drawer from "../components/drawer/drawer.component";
+import CartItemsMenu from "../components/cart-items-menu/cart-menu.components";
 import Footer from "../components/footer/footer.component";
 
 function defaultLayout(props) {
    return (
       <>
          <Navbar />
-         <Drawer direction="right" />
+         <CartItemsMenu direction="right" />
          {props.children}
          <Footer />
       </>

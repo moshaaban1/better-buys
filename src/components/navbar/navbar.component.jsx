@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { toggleDrawer } from "../../redux/cart/cart.actions";
+import { toggleCartMenu } from "../../redux/cart/cart.actions";
 import { auth } from "../../firebase/firebase.utils";
 
 import { Container } from "@material-ui/core";
@@ -26,7 +26,7 @@ function Navbar(props) {
    };
 
    const handleToggleDrawer = () => {
-      props.dispatch(toggleDrawer());
+      props.dispatch(toggleCartMenu());
    };
 
    return (

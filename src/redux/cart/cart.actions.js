@@ -1,7 +1,7 @@
 import types from "./cart.types";
 
-export const toggleDrawer = () => ({
-   type: types.TOGGLE_DRAWER_CART
+export const toggleCartMenu = () => ({
+   type: types.TOGGLE_CART_MENU
 });
 
 export const addItemToCart = item => ({

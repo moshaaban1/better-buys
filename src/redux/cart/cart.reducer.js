@@ -2,16 +2,16 @@ import types from "./cart.types";
 import { checkItemExist } from "./cart.utils";
 
 const INITIAL_STATE = {
-   drawerStatus: false,
+   menuStatus: false,
    cartItems: []
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
    switch (action.type) {
-      case types.TOGGLE_DRAWER_CART:
+      case types.TOGGLE_CART_MENU:
          return {
             ...state,
-            drawerStatus: !state.drawerStatus
+            menuStatus: !state.menuStatus
          };
       case types.ADD_ITEM_TO_CART:
          return {
