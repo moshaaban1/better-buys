@@ -4,12 +4,12 @@ export const toggleDrawer = () => ({
    type: types.TOGGLE_DRAWER_CART
 });
 
-export const addItem = item => ({
-   type: types.ADD_ITEM,
+export const addItemToCart = item => ({
+   type: types.ADD_ITEM_TO_CART,
    payload: item
 });
 
 export const removeItem = item => ({
-   type: types.REMOVE_ITEM,
+   type: types.REMOVE_ITEM_FROM_CART,
    payload: item
 });
