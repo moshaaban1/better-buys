@@ -1,9 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Container } from "@material-ui/core";
-import LocalMallIcon from "@material-ui/icons/LocalMall";
-import { auth } from "../../firebase/firebase.utils";
+import { NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { toggleDrawer } from "../../redux/cart/cart.actions";
+import { auth } from "../../firebase/firebase.utils";
+
+import { Container } from "@material-ui/core";
+import ShoppingBag from "../../assets/images/shopping-bag.svg";
 import Logo from "../../assets/images/logo.svg";
 import "./navbar.style.scss";
 
@@ -23,6 +25,10 @@ function Navbar(props) {
          });
    };
 
+   const handleToggleDrawer = () => {
+      props.dispatch(toggleDrawer());
+   };
+
    return (
       <nav className="navbar">
          <Container
@@ -40,28 +46,33 @@ function Navbar(props) {
 
             <ul className="navbar__links">
                <li>
-                  <Link to="/shop">Shop</Link>
+                  <NavLink to="/shop" activeClassName="selected">
+                     Shop
+                  </NavLink>
                </li>
                {props.user ? (
                   <li>
-                     <Link onClick={signOut} to="/signIn">
+                     <NavLink onClick={signOut} to="/signIn">
                         Sign out
-                     </Link>
+                     </NavLink>
                   </li>
                ) : (
                   <>
                      <li>
-                        <Link to="/signin">sign in</Link>
+                        <NavLink to="/signin" activeClassName="selected">
+                           sign in
+                        </NavLink>
                      </li>
                      <li>
-                        <Link to="/signup">sign up</Link>
+                        <NavLink to="/signup" activeClassName="selected">
+                           sign up
+                        </NavLink>
                      </li>
                   </>
                )}
-               <li>
-                  <Link to="/checkout">
-                     <LocalMallIcon />
-                  </Link>
+               <li onClick={handleToggleDrawer}>
+                  Cart
+                  <img src={ShoppingBag} alt="navbar shopping bag" />
                </li>
             </ul>
          </Container>

@@ -13,10 +13,18 @@
         a {
             font-size: 16px;
             color: #fff;
-            margin: 10px;
+            padding: 10px 15px;
+            margin: 0 2px;
             display: inline-block;
             text-decoration: none;
             text-transform: uppercase;
+            transition: all .5s ease-in-out;
+
+            &:hover,
+            &.selected {
+                background: #fff;
+                color: #000;
+            }
         }
     }
 }
