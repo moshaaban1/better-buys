@@ -9,13 +9,13 @@ import ShoppingBag from "../../assets/images/shopping-bag.svg";
 import Logo from "../../assets/images/logo.svg";
 import "./navbar.style.scss";
 
-function Navbar(props) {
+function Navbar({ user, dispatch, itemCount }) {
    const signOut = () => {
       auth
          .signOut()
          .then(function() {
             console.log("Sign-out successful.");
-            props.dispatch({
+            dispatch({
                type: "SET_USER",
                payload: null
             });
@@ -26,7 +26,7 @@ function Navbar(props) {
    };
 
    const handleToggleDrawer = () => {
-      props.dispatch(toggleCartMenu());
+      dispatch(toggleCartMenu());
    };
 
    return (
@@ -50,7 +50,7 @@ function Navbar(props) {
                      Shop
                   </NavLink>
                </li>
-               {props.user ? (
+               {user ? (
                   <li>
                      <NavLink onClick={signOut} to="/signIn">
                         Sign out
@@ -70,8 +70,9 @@ function Navbar(props) {
                      </li>
                   </>
                )}
+
                <li onClick={handleToggleDrawer}>
-                  Cart
+                  {itemCount}
                   <img src={ShoppingBag} alt="navbar shopping bag" />
                </li>
             </ul>
@@ -80,8 +81,13 @@ function Navbar(props) {
    );
 }
 
-const mapStateToProps = state => ({
-   user: state.user.user
+const mapStateToProps = ({ user: { user }, cart: { cartItems } }) => ({
+   user,
+   itemCount: cartItems.length
+      ? cartItems.reduce((total, curr) => {
+           return total + curr.quantity;
+        }, 0)
+      : 0
 });
 
 export default connect(mapStateToProps)(Navbar);

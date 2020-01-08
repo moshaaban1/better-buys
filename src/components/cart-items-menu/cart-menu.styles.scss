@@ -38,3 +38,8 @@ $drawer-size: 280px;
         transform: translateX(0px);
     }
 }
+
+.cart-items {
+    height: calc(100% - 50px);
+    overflow-y: scroll;
+}
