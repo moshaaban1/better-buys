@@ -22,7 +22,7 @@ export default class SignUp extends Component {
       const { name, email, password, confirmPassword } = this.state;
 
       if (password !== confirmPassword) {
-         console.log("Password don't match");
+         console.log("Password doesn't match");
          return;
       }
 
@@ -85,8 +85,13 @@ export default class SignUp extends Component {
                         label="Confirm Password"
                         required
                      />
-                     <Button color="dark" size="md" width="100%">
-                        {"Sign Up".toUpperCase()}
+                     <Button
+                        color="dark"
+                        size="md"
+                        width="100%"
+                        transform="uppercase"
+                     >
+                        Sign Up
                      </Button>
                   </form>
                </div>

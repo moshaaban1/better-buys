@@ -61,17 +61,23 @@ export default class SignIn extends Component {
                         label="Password"
                         required
                      />
-                     <Button color="dark" size="md" width="100%">
-                        {"Sign in".toUpperCase()}
+                     <Button
+                        color="dark"
+                        size="md"
+                        width="100%"
+                        transform="uppercase"
+                     >
+                        sign in
                      </Button>
                   </form>
                   <Button
                      color="primary"
                      size="md"
                      width="100%"
+                     transform="uppercase"
                      onClick={signInWithGoogle}
                   >
-                     {"sign in with google".toUpperCase()}
+                     sign in with google
                   </Button>
                </div>
             </Container>
