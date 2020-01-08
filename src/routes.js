@@ -14,7 +14,8 @@ const routes = [
    },
    {
       path: "/shop/",
-      component: Shop
+      component: Shop,
+      exact: true
    },
    {
       path: "/shop/:category",
