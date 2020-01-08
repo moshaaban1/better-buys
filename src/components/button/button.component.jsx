@@ -4,8 +4,8 @@ export default function Button({
    color,
    size,
    children,
-   clicked,
    width,
+   transform,
    ...otherProps
 }) {
    const btnStyle = {
@@ -15,6 +15,16 @@ export default function Button({
       width: width,
       marginBottom: "10px"
    };
+   switch (transform) {
+      case "uppercase":
+         btnStyle.textTransform = "uppercase";
+         break;
+      case "capitalize":
+         btnStyle.textTransform = "capitalize";
+         break;
+      default:
+         btnStyle.textTransform = "lowercase";
+   }
    switch (color) {
       case "dark":
          btnStyle.backgroundColor = "#000";
