@@ -7,6 +7,8 @@ import {
    removeCartItem
 } from "../../redux/cart/cart.actions";
 
+import "./checkout-item.styles.scss";
+
 function CheckoutItem({
    imageUrl,
    name,
@@ -20,15 +22,14 @@ function CheckoutItem({
    return (
       <div className="checkout-item">
          <img src={imageUrl} alt={name} />
-         <div className="item-details">
-            <span className="name">{name}</span>
-            <span className="price">
-               {quantity} X {price}$
-            </span>
+         <span className="name">{name}</span>
+         <span className="price">{price}$</span>
+         <div className="item-control">
+            <button onClick={() => increaseItemQuantity(id)}>&#10094;</button>
+            <span className="quantity">{quantity}</span>
+            <button onClick={() => decreaseItemQuantity(id)}>&#10095;</button>
          </div>
-         <button onClick={() => increaseItemQuantity(id)}>Increase</button>
-         <button onClick={() => decreaseItemQuantity(id)}>Decrease</button>
-         <button onClick={() => removeCartItem(id)}>Remove</button>
+         <button onClick={() => removeCartItem(id)}>&#10005;</button>
       </div>
    );
 }

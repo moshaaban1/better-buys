@@ -20,6 +20,11 @@ function CartItemsMenu({ menuStatus, cartItems, handleToggleMenu, direction }) {
       e.stopPropagation();
    };
 
+   const goToCheckOut = () => {
+      history.push("/checkout");
+      handleToggleMenu();
+   };
+
    return (
       <div
          className={`${"cart-items-container " + (menuStatus ? "active" : "")}`}
@@ -45,7 +50,7 @@ function CartItemsMenu({ menuStatus, cartItems, handleToggleMenu, direction }) {
                size="md"
                transform="uppercase"
                width="100%"
-               onClick={() => history.push("/checkout")}
+               onClick={goToCheckOut}
             >
                go to checkout
             </Button>
