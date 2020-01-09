@@ -1,14 +1,11 @@
 import React from "react";
-import Button from "../button/button.component";
 import { connect } from "react-redux";
+
+import Button from "../button/button.component";
 import { addItemToCart } from "../../redux/cart/cart.actions";
 import "./product.styles.scss";
 
-function Product({ name, imageUrl, price, id, dispatch }) {
-   const addToCart = item => {
-      dispatch(addItemToCart(item));
-   };
-
+function Product({ name, imageUrl, price, id, addItemToCart }) {
    return (
       <div className="product">
          <img src={imageUrl} alt="" />
@@ -21,7 +18,7 @@ function Product({ name, imageUrl, price, id, dispatch }) {
             size="md"
             width="100%"
             transform="uppercase"
-            onClick={() => addToCart({ name, imageUrl, price, id })}
+            onClick={() => addItemToCart({ name, imageUrl, price, id })}
          >
             add to cart
          </Button>
@@ -29,4 +26,11 @@ function Product({ name, imageUrl, price, id, dispatch }) {
    );
 }
 
-export default connect(null)(Product);
+const mapDispatchToProps = dispatch => ({
+   addItemToCart: payload => dispatch(addItemToCart(payload))
+});
+
+export default connect(
+   null,
+   mapDispatchToProps
+)(Product);

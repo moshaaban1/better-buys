@@ -1,23 +1,25 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { Container } from "@material-ui/core";
+
 import { auth } from "../../firebase/firebase.utils";
 
-import { Container } from "@material-ui/core";
+import { setCurrentUser } from "../../redux/user/user.actions";
+import { selectUser } from "../../redux/user/user.reselect";
+
 import NavbarIcon from "../navbar-icon/navbar-icon.component";
 import Logo from "../../assets/images/logo.svg";
+
 import "./navbar.style.scss";
 
-function Navbar({ user, dispatch }) {
+function Navbar({ user, setCurrentUser }) {
    const signOut = () => {
       auth
          .signOut()
          .then(function() {
-            console.log("Sign-out successful.");
-            dispatch({
-               type: "SET_USER",
-               payload: null
-            });
+            setCurrentUser(null);
          })
          .catch(function(error) {
             console.log("An error happened.");
@@ -72,8 +74,15 @@ function Navbar({ user, dispatch }) {
    );
 }
 
-const mapStateToProps = ({ user: { user } }) => ({
-   user
+const mapStateToProps = createStructuredSelector({
+   user: selectUser
 });
 
-export default connect(mapStateToProps)(Navbar);
+const mapDispatchToProps = dispatch => ({
+   setCurrentUser: payload => dispatch(setCurrentUser(payload))
+});
+
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(Navbar);

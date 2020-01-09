@@ -1,8 +1,15 @@
 import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import DefaultLayout from "../layouts/default";
-import { auth, createUserProfile } from "../firebase/firebase.utils";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
+import { auth, createUserProfile } from "../firebase/firebase.utils";
+
+import { selectUser } from "../redux/user/user.reselect";
+import { setCurrentUser } from "../redux/user/user.actions";
+
+import DefaultLayout from "../layouts/default";
+
 import "./App.style.css";
 
 import routes from "../routes";
@@ -13,10 +20,7 @@ class App extends React.Component {
          if (userAuth) {
             createUserProfile(userAuth).then(userRef => {
                userRef.onSnapshot(snapShot => {
-                  this.props.dispatch({
-                     type: "SET_USER",
-                     payload: snapShot.data()
-                  });
+                  this.props.setCurrentUser(snapShot.data());
                });
             });
          }
@@ -36,7 +40,7 @@ class App extends React.Component {
                               key={"route" + i}
                               render={() =>
                                  this.props.user ? (
-                                    <Redirect path="/" />
+                                    <Redirect to="/" />
                                  ) : (
                                     <Route {...route} key={"route" + i} />
                                  )
@@ -54,8 +58,15 @@ class App extends React.Component {
    }
 }
 
-const mapStateToProps = state => ({
-   user: state.user.user
+const mapStateToProps = createStructuredSelector({
+   user: selectUser
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+   setCurrentUser: payload => dispatch(setCurrentUser(payload))
+});
+
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(App);

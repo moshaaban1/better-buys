@@ -1,8 +1,11 @@
 import React from "react";
-import { ReactComponent as ShoppingBag } from "../../assets/images/shopping-bag.svg";
-import { toggleCartMenu } from "../../redux/cart/cart.actions";
-import { selectItemsCount } from "../../redux/cart/cart.reselect";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
+import { toggleCartMenu } from "../../redux/cart/cart.actions";
+import { selectCartItemsCount } from "../../redux/cart/cart.reselect";
+
+import { ReactComponent as ShoppingBag } from "../../assets/images/shopping-bag.svg";
 import "./navbar-icon.styles.scss";
 
 function NavbarIcon({ dispatch, cartItemsCount }) {
@@ -14,8 +17,8 @@ function NavbarIcon({ dispatch, cartItemsCount }) {
    );
 }
 
-const mapStateToProps = state => ({
-   cartItemsCount: selectItemsCount(state)
+const mapStateToProps = createStructuredSelector({
+   cartItemsCount: selectCartItemsCount
 });
 
 export default connect(mapStateToProps)(NavbarIcon);

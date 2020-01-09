@@ -1,22 +1,24 @@
 import { createSelector } from "reselect";
 
-// Input Selector
-export const cartItems = state => state.cart.cartItems;
+const selectCart = state => state.cart;
 
-export const selectItemsCount = state =>
-   state.cart.cartItems.length
-      ? state.cart.cartItems.reduce((total, curr) => {
-           return total + curr.quantity;
-        }, 0)
-      : 0;
+export const selectCartItems = createSelector(
+   [selectCart],
+   cart => cart.cartItems
+);
 
-// Reselect's Selector
-// const selectItemsCount = createSelector(
-//    ([cartItems],
-//    items =>
-//       items.length
-//          ? state.cart.cartItems.reduce((total, curr) => {
-//               return total + curr.quantity;
-//            }, 0)
-//          : 0)
-// );
+export const selectCartMenuStatus = createSelector(
+   [selectCart],
+   cart => cart.menuStatus
+);
+
+export const selectCartItemsCount = createSelector(
+   [selectCartItems],
+   items => {
+      return items.length
+         ? items.reduce((total, curr) => {
+              return total + curr.quantity;
+           }, 0)
+         : 0;
+   }
+);
