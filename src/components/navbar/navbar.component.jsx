@@ -1,15 +1,14 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { toggleCartMenu } from "../../redux/cart/cart.actions";
 import { auth } from "../../firebase/firebase.utils";
 
 import { Container } from "@material-ui/core";
-import ShoppingBag from "../../assets/images/shopping-bag.svg";
+import NavbarIcon from "../navbar-icon/navbar-icon.component";
 import Logo from "../../assets/images/logo.svg";
 import "./navbar.style.scss";
 
-function Navbar({ user, dispatch, itemCount }) {
+function Navbar({ user, dispatch }) {
    const signOut = () => {
       auth
          .signOut()
@@ -23,10 +22,6 @@ function Navbar({ user, dispatch, itemCount }) {
          .catch(function(error) {
             console.log("An error happened.");
          });
-   };
-
-   const handleToggleDrawer = () => {
-      dispatch(toggleCartMenu());
    };
 
    return (
@@ -70,24 +65,15 @@ function Navbar({ user, dispatch, itemCount }) {
                      </li>
                   </>
                )}
-
-               <li onClick={handleToggleDrawer}>
-                  {itemCount}
-                  <img src={ShoppingBag} alt="navbar shopping bag" />
-               </li>
+               <NavbarIcon />
             </ul>
          </Container>
       </nav>
    );
 }
 
-const mapStateToProps = ({ user: { user }, cart: { cartItems } }) => ({
-   user,
-   itemCount: cartItems.length
-      ? cartItems.reduce((total, curr) => {
-           return total + curr.quantity;
-        }, 0)
-      : 0
+const mapStateToProps = ({ user: { user } }) => ({
+   user
 });
 
 export default connect(mapStateToProps)(Navbar);
