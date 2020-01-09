@@ -39,7 +39,16 @@ $drawer-size: 280px;
     }
 }
 
-.cart-items {
+.cart-items,
+.cart-empty {
     height: calc(100% - 50px);
-    overflow-y: scroll;
+    overflow-y: auto;
+}
+
+.cart-empty {
+    font-size: 20px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

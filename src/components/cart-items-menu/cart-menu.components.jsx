@@ -11,7 +11,6 @@ import {
 
 import Button from "../button/button.component";
 import CartItem from "../cart-item/cart-item.component";
-
 import "./cart-menu.styles.scss";
 
 function CartItemsMenu({ menuStatus, cartItems, handleToggleMenu, direction }) {
@@ -31,11 +30,15 @@ function CartItemsMenu({ menuStatus, cartItems, handleToggleMenu, direction }) {
                (menuStatus ? " active" : "")}`}
             onClick={handlePropagation}
          >
-            <div className="cart-items">
-               {cartItems.map(item => (
-                  <CartItem {...item} key={item.id} />
-               ))}
-            </div>
+            {cartItems.length ? (
+               <div className="cart-items">
+                  {cartItems.map(item => (
+                     <CartItem {...item} key={item.id} />
+                  ))}
+               </div>
+            ) : (
+               <div className="cart-empty">The cart is empty</div>
+            )}
 
             <Button
                color="dark"
