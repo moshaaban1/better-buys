@@ -23,3 +23,7 @@ export const increaseAndDecreaseHandler = (cartItems, cartItemId, type) => {
       }
    });
 };
+
+export const removeCartItem = (cartItems, cartItemId) => {
+   return cartItems.filter(item => item.id !== cartItemId);
+};

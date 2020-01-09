@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 
 import {
    increaseItemQuantity,
-   decreaseItemQuantity
+   decreaseItemQuantity,
+   removeCartItem
 } from "../../redux/cart/cart.actions";
 
 function CheckoutItem({
@@ -13,7 +14,8 @@ function CheckoutItem({
    price,
    quantity,
    increaseItemQuantity,
-   decreaseItemQuantity
+   decreaseItemQuantity,
+   removeCartItem
 }) {
    return (
       <div className="checkout-item">
@@ -26,13 +28,15 @@ function CheckoutItem({
          </div>
          <button onClick={() => increaseItemQuantity(id)}>Increase</button>
          <button onClick={() => decreaseItemQuantity(id)}>Decrease</button>
+         <button onClick={() => removeCartItem(id)}>Remove</button>
       </div>
    );
 }
 
 const mapDispatchToProps = dispatch => ({
    increaseItemQuantity: payload => dispatch(increaseItemQuantity(payload)),
-   decreaseItemQuantity: payload => dispatch(decreaseItemQuantity(payload))
+   decreaseItemQuantity: payload => dispatch(decreaseItemQuantity(payload)),
+   removeCartItem: payload => dispatch(removeCartItem(payload))
 });
 
 export default connect(
