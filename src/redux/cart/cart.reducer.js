@@ -1,5 +1,5 @@
 import types from "./cart.types";
-import { checkItemExist } from "./cart.utils";
+import { checkItemExist, increaseAndDecreaseHandler } from "./cart.utils";
 
 const INITIAL_STATE = {
    menuStatus: false,
@@ -17,6 +17,24 @@ const cartReducer = (state = INITIAL_STATE, action) => {
          return {
             ...state,
             cartItems: checkItemExist(state.cartItems, action.payload)
+         };
+      case types.INCREASE_ITEM_QUANTITY:
+         return {
+            ...state,
+            cartItems: increaseAndDecreaseHandler(
+               state.cartItems,
+               action.payload,
+               "increase"
+            )
+         };
+      case types.DECREASE_ITEM_QUANTITY:
+         return {
+            ...state,
+            cartItems: increaseAndDecreaseHandler(
+               state.cartItems,
+               action.payload,
+               "decrease"
+            )
          };
       default:
          return state;
