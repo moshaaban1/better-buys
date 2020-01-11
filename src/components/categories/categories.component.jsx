@@ -7,15 +7,13 @@ import { selectCategoriesItems } from "../../redux/categories/categories.reselec
 import Category from "../category-item/category.component";
 import "./categories.styles.scss";
 
-function Categories({ categories }) {
-   return (
-      <div className="categories">
-         {categories.map(category => (
-            <Category {...category} key={category.id} />
-         ))}
-      </div>
-   );
-}
+const Categories = ({ categories }) => (
+   <div className="categories">
+      {categories.map(category => (
+         <Category {...category} key={category.id} />
+      ))}
+   </div>
+);
 
 const mapStateToProps = createStructuredSelector({
    categories: selectCategoriesItems

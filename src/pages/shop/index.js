@@ -1,14 +1,12 @@
 import React from "react";
-import { Container } from "@material-ui/core";
-import SHOP_DATA from "./shop.data";
-import Collections from "../../components/collections-container/collections.component";
 
-const collections = SHOP_DATA;
+import { Container } from "@material-ui/core";
+import Collections from "../../components/collections-container/collections.component";
 
 const Shop = () => (
    <main>
       <Container>
-         <Collections collections={collections} />
+         <Collections />
       </Container>
    </main>
 );

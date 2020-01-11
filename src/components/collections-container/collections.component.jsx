@@ -1,21 +1,24 @@
 import React from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
+import { selectShopCollections } from "../../redux/shop/shop.reselect";
+
 import Collection from "../collection-container/collection-container.component";
 import "./collections.styles.scss";
 
-export default function Collections(props) {
-   return (
-      <div className="collections-container">
-         {props.collections.map(collection => {
-            if (collection.items.length) {
-               return (
-                  <Collection
-                     key={collection.title}
-                     title={collection.title}
-                     items={collection.items}
-                  />
-               );
-            }
-         })}
-      </div>
-   );
-}
+const Collections = ({ collections }) => (
+   <div className="collections-container">
+      {collections.map(collection =>
+         collection.items.length ? (
+            <Collection {...collection} key={"collection" + collection.title} />
+         ) : null
+      )}
+   </div>
+);
+
+const mapStateToProps = createStructuredSelector({
+   collections: selectShopCollections
+});
+
+export default connect(mapStateToProps)(Collections);
