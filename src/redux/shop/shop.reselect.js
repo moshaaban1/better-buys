@@ -7,9 +7,14 @@ export const selectCollections = createSelector(
    shop => shop.collections
 );
 
+export const selectCollectionsForPreview = createSelector(
+   [selectCollections],
+   collections => Object.keys(collections).map(key => collections[key])
+);
+
 export const selectCollectionsByCount = collectionCount =>
    createSelector(
-      [selectCollections],
+      [selectCollectionsForPreview],
       collections =>
          collections.map(collection => ({
             ...collection,
@@ -20,10 +25,5 @@ export const selectCollectionsByCount = collectionCount =>
 export const selectCollection = collectionId =>
    createSelector(
       [selectCollections],
-      collections =>
-         collections.find(
-            collection =>
-               collection.title.toLocaleLowerCase() ===
-               collectionId.toLocaleLowerCase()
-         )
+      collections => collections[collectionId]
    );
