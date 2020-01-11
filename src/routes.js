@@ -1,6 +1,5 @@
 import Home from "./pages/home/index";
 import Shop from "./pages/shop/index";
-import ShopCategory from "./pages/shop-category/index";
 import SignIn from "./pages/signin/index";
 import SignUp from "./pages/signup/index";
 import Checkout from "./pages/checkout/index";
@@ -14,12 +13,7 @@ const routes = [
    },
    {
       path: "/shop/",
-      component: Shop,
-      exact: true
-   },
-   {
-      path: "/shop/:category",
-      component: ShopCategory
+      component: Shop
    },
    {
       path: "/signIn",
