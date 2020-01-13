@@ -11,9 +11,15 @@ import {
 
 import Button from "../button/button.component";
 import CartItem from "../cart-item/cart-item.component";
-import "./cart-menu.styles.scss";
+import {
+   CartMenuContainer,
+   CartMenu,
+   CartEmpty,
+   CartItems
+} from "./cart-menu.styles";
 
 function CartItemsMenu({ menuStatus, cartItems, handleToggleMenu, direction }) {
+   console.log(menuStatus);
    const history = useHistory();
 
    const handlePropagation = e => {
@@ -26,30 +32,23 @@ function CartItemsMenu({ menuStatus, cartItems, handleToggleMenu, direction }) {
    };
 
    return (
-      <div
-         className={`${"cart-items-container " + (menuStatus ? "active" : "")}`}
-         onClick={handleToggleMenu}
-      >
-         <div
-            className={`cart-items-menu ${direction +
-               (menuStatus ? " active" : "")}`}
-            onClick={handlePropagation}
-         >
+      <CartMenuContainer active={menuStatus} onClick={handleToggleMenu}>
+         <CartMenu active={menuStatus} onClick={handlePropagation}>
             {cartItems.length ? (
-               <div className="cart-items">
+               <CartItems>
                   {cartItems.map(item => (
                      <CartItem {...item} key={item.id} />
                   ))}
-               </div>
+               </CartItems>
             ) : (
-               <div className="cart-empty">The cart is empty</div>
+               <CartEmpty>The cart is empty</CartEmpty>
             )}
 
             <Button inverted full onClick={goToCheckOut}>
                go to checkout
             </Button>
-         </div>
-      </div>
+         </CartMenu>
+      </CartMenuContainer>
    );
 }
 
