@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Container } from "@material-ui/core";
+
+import { auth, createUserProfile } from "../../firebase/firebase.utils";
+
 import Button from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.component";
-import { auth, createUserProfile } from "../../firebase/firebase.utils";
 export default class SignUp extends Component {
    state = {
       name: "ahmed",
@@ -85,12 +87,7 @@ export default class SignUp extends Component {
                         label="Confirm Password"
                         required
                      />
-                     <Button
-                        color="dark"
-                        size="md"
-                        width="100%"
-                        transform="uppercase"
-                     >
+                     <Button inverted full>
                         Sign Up
                      </Button>
                   </form>

@@ -1,78 +1,53 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { Container } from "@material-ui/core";
 
 import { auth } from "../../firebase/firebase.utils";
-
 import { setCurrentUser } from "../../redux/user/user.actions";
 import { selectUser } from "../../redux/user/user.reselect";
 
-import NavbarIcon from "../navbar-icon/navbar-icon.component";
-import Logo from "../../assets/images/logo.svg";
+import { ReactComponent as Logo } from "../../assets/images/logo.svg";
+import NavIcon from "../navbar-icon/navbar-icon.component";
+import {
+   NavContainer,
+   Container,
+   NavLogo,
+   NavList,
+   NavLink
+} from "./navbar.styles";
 
-import "./navbar.style.scss";
-
-function Navbar({ user, setCurrentUser }) {
+const Navbar = ({ user, setCurrentUser }) => {
    const signOut = () => {
-      auth
-         .signOut()
-         .then(function() {
-            setCurrentUser(null);
-         })
-         .catch(function(error) {
-            console.log("An error happened.");
-         });
+      auth.signOut().then(function() {
+         setCurrentUser(null);
+      });
    };
 
    return (
-      <nav className="navbar">
-         <Container
-            className="container"
-            style={{
-               display: "flex",
-               alignItems: "center",
-               flexWrap: "wrap",
-               justifyContent: "space-between"
-            }}
-         >
-            <Link to="/" className="navbar__logo">
-               <img src={Logo} alt="navbar logo" />
-            </Link>
+      <NavContainer>
+         <Container>
+            <NavLogo to="/">
+               <Logo />
+            </NavLogo>
 
-            <ul className="navbar__links">
-               <li>
-                  <NavLink to="/shop" activeClassName="selected">
-                     Shop
-                  </NavLink>
-               </li>
+            <NavList>
+               <NavLink to="/shop">Shop</NavLink>
                {user ? (
-                  <li>
-                     <NavLink onClick={signOut} to="/signIn">
-                        Sign out
-                     </NavLink>
-                  </li>
+                  <NavLink as="div" onClick={signOut}>
+                     Sign out
+                  </NavLink>
                ) : (
                   <>
-                     <li>
-                        <NavLink to="/signin" activeClassName="selected">
-                           sign in
-                        </NavLink>
-                     </li>
-                     <li>
-                        <NavLink to="/signup" activeClassName="selected">
-                           sign up
-                        </NavLink>
-                     </li>
+                     <NavLink to="/signin">sign in</NavLink>
+                     <NavLink to="/signup">sign up</NavLink>
                   </>
                )}
-               <NavbarIcon />
-            </ul>
+               <NavIcon />
+            </NavList>
          </Container>
-      </nav>
+      </NavContainer>
    );
-}
+};
 
 const mapStateToProps = createStructuredSelector({
    user: selectUser

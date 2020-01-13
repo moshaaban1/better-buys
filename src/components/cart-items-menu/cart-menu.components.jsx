@@ -45,13 +45,7 @@ function CartItemsMenu({ menuStatus, cartItems, handleToggleMenu, direction }) {
                <div className="cart-empty">The cart is empty</div>
             )}
 
-            <Button
-               color="dark"
-               size="md"
-               transform="uppercase"
-               width="100%"
-               onClick={goToCheckOut}
-            >
+            <Button inverted full onClick={goToCheckOut}>
                go to checkout
             </Button>
          </div>

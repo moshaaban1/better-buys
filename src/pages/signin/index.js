@@ -61,22 +61,11 @@ export default class SignIn extends Component {
                         label="Password"
                         required
                      />
-                     <Button
-                        color="dark"
-                        size="md"
-                        width="100%"
-                        transform="uppercase"
-                     >
+                     <Button inverted full>
                         sign in
                      </Button>
                   </form>
-                  <Button
-                     color="primary"
-                     size="md"
-                     width="100%"
-                     transform="uppercase"
-                     onClick={signInWithGoogle}
-                  >
+                  <Button primary full onClick={signInWithGoogle}>
                      sign in with google
                   </Button>
                </div>

@@ -5,15 +5,18 @@ import { createStructuredSelector } from "reselect";
 import { toggleCartMenu } from "../../redux/cart/cart.actions";
 import { selectCartItemsCount } from "../../redux/cart/cart.reselect";
 
-import { ReactComponent as ShoppingBag } from "../../assets/images/shopping-bag.svg";
-import "./navbar-icon.styles.scss";
+import {
+   NavbarIconContainer,
+   ShoppingIcon,
+   NavbarCartCount
+} from "./navbar-icon.styles";
 
 function NavbarIcon({ dispatch, cartItemsCount }) {
    return (
-      <li className="navbar-icon" onClick={() => dispatch(toggleCartMenu())}>
-         <span className="navbar-cart-count">{cartItemsCount}</span>
-         <ShoppingBag />
-      </li>
+      <NavbarIconContainer onClick={() => dispatch(toggleCartMenu())}>
+         <NavbarCartCount>{cartItemsCount}</NavbarCartCount>
+         <ShoppingIcon />
+      </NavbarIconContainer>
    );
 }
 

@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import Button from "../button/button.component";
 import { addItemToCart } from "../../redux/cart/cart.actions";
+
+import Button from "../button/button.component";
 import "./product.styles.scss";
 
 function Product({ name, imageUrl, price, id, addItemToCart }) {
@@ -14,10 +15,7 @@ function Product({ name, imageUrl, price, id, addItemToCart }) {
             <span className="product-price">{price}$</span>
          </div>
          <Button
-            color="dark"
-            size="md"
-            width="100%"
-            transform="uppercase"
+            full
             onClick={() => addItemToCart({ name, imageUrl, price, id })}
          >
             add to cart
