@@ -2,17 +2,22 @@ import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import {
+   MuiThemeProvider,
+   createMuiTheme,
+   CssBaseline
+} from "@material-ui/core";
 
 import { auth, createUserProfile } from "../firebase/firebase.utils";
-
 import { selectUser } from "../redux/user/user.reselect";
 import { setCurrentUser } from "../redux/user/user.actions";
 
 import DefaultLayout from "../layouts/default";
-
-import "./App.style.css";
+import Theme from "./Theme";
 
 import routes from "../routes";
+
+const theme = createMuiTheme(Theme);
 
 class App extends React.Component {
    componentDidMount() {
@@ -29,7 +34,8 @@ class App extends React.Component {
 
    render() {
       return (
-         <>
+         <MuiThemeProvider theme={theme}>
+            <CssBaseline />
             <BrowserRouter basename={process.env.PUBLIC_URL}>
                <DefaultLayout>
                   <Switch>
@@ -53,7 +59,7 @@ class App extends React.Component {
                   </Switch>
                </DefaultLayout>
             </BrowserRouter>
-         </>
+         </MuiThemeProvider>
       );
    }
 }
