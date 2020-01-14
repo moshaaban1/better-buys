@@ -7,15 +7,13 @@ import { Container } from "@material-ui/core";
 import Collection from "../../components/collection-container/collection-container.component";
 
 const ShopCollection = ({ collection }) => (
-   <main>
-      <Container>
-         {collection ? (
-            <Collection {...collection} />
-         ) : (
-            <div>This collection has no products</div>
-         )}
-      </Container>
-   </main>
+   <Container>
+      {collection ? (
+         <Collection {...collection} />
+      ) : (
+         <div>This collection has no products</div>
+      )}
+   </Container>
 );
 
 const mapStateToProps = (state, ownProps) => ({

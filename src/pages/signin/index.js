@@ -40,38 +40,36 @@ export default class SignIn extends Component {
 
    render() {
       return (
-         <main className="page-content">
-            <Container>
-               <div className="sign-in">
-                  <h2 className="title">I already have an account</h2>
-                  <span>Sign in with your email and password</span>
-                  <form className="form" onSubmit={this.handleSubmit}>
-                     <FormInput
-                        type="email"
-                        name="email"
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                        label="Email"
-                        required
-                     />
-                     <FormInput
-                        type="password"
-                        name="password"
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                        label="Password"
-                        required
-                     />
-                     <Button inverted full>
-                        sign in
-                     </Button>
-                  </form>
-                  <Button primary full onClick={signInWithGoogle}>
-                     sign in with google
+         <Container>
+            <div className="sign-in">
+               <h2 className="title">I already have an account</h2>
+               <span>Sign in with your email and password</span>
+               <form className="form" onSubmit={this.handleSubmit}>
+                  <FormInput
+                     type="email"
+                     name="email"
+                     value={this.state.email}
+                     onChange={this.handleChange}
+                     label="Email"
+                     required
+                  />
+                  <FormInput
+                     type="password"
+                     name="password"
+                     value={this.state.password}
+                     onChange={this.handleChange}
+                     label="Password"
+                     required
+                  />
+                  <Button inverted full>
+                     sign in
                   </Button>
-               </div>
-            </Container>
-         </main>
+               </form>
+               <Button primary full onClick={signInWithGoogle}>
+                  sign in with google
+               </Button>
+            </div>
+         </Container>
       );
    }
 }
