@@ -3,7 +3,7 @@ import { Container } from "@material-ui/core";
 
 import Button from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.component";
-import { signInWithGoogle, auth } from "../../firebase/firebase.utils";
+import { signInWithGoogle, auth } from "../../firebase/firebase.auth";
 import "./index.styles.scss";
 export default class SignIn extends Component {
    state = {

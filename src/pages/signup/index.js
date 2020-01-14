@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container } from "@material-ui/core";
 
-import { auth, createUserProfile } from "../../firebase/firebase.utils";
+import { auth, createUserProfile } from "../../firebase/firebase.auth";
 
 import Button from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.component";
