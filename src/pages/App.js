@@ -8,7 +8,7 @@ import {
    CssBaseline
 } from "@material-ui/core";
 
-import { auth, createUserProfile } from "../firebase/firebase.utils";
+import { auth, createUserProfile } from "../firebase/firebase.auth";
 import { selectUser } from "../redux/user/user.reselect";
 import { setCurrentUser } from "../redux/user/user.actions";
 

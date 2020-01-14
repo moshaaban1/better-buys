@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
-import { auth } from "../../firebase/firebase.utils";
+import { auth } from "../../firebase/firebase.auth";
 import { setCurrentUser } from "../../redux/user/user.actions";
 import { selectUser } from "../../redux/user/user.reselect";
 
