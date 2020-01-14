@@ -1,18 +1,22 @@
 import React from "react";
 
-import Product from "../product-item/product.component.jsx";
-import "./collection.styles.scss";
+import Product from "../product-item/product.component";
+import {
+   CollectionContainer,
+   CollectionTitle,
+   CollectionItems
+} from "./collection-container.styles";
 
 const Collection = ({ title, items }) => {
    return (
-      <div className="collection-container">
-         <h2 className="collection-title">{title}</h2>
-         <div className="collection-items">
+      <CollectionContainer>
+         <CollectionTitle>{title}</CollectionTitle>
+         <CollectionItems>
             {items.map(product => (
                <Product {...product} key={product.name} />
             ))}
-         </div>
-      </div>
+         </CollectionItems>
+      </CollectionContainer>
    );
 };
 

@@ -4,23 +4,23 @@ import { connect } from "react-redux";
 import { addItemToCart } from "../../redux/cart/cart.actions";
 
 import Button from "../button/button.component";
-import "./product.styles.scss";
+import { ProductContainer, ProductImg, ProductDetails } from "./product.styles";
 
 function Product({ name, imageUrl, price, id, addItemToCart }) {
    return (
-      <div className="product">
-         <img src={imageUrl} alt="" />
-         <div className="details">
-            <div className="product-name">{name}</div>
-            <span className="product-price">{price}$</span>
-         </div>
+      <ProductContainer>
+         <ProductImg src={imageUrl} alt="" />
+         <ProductDetails>
+            <span>{name}</span>
+            <span>{price}$</span>
+         </ProductDetails>
          <Button
             full
             onClick={() => addItemToCart({ name, imageUrl, price, id })}
          >
             add to cart
          </Button>
-      </div>
+      </ProductContainer>
    );
 }
 

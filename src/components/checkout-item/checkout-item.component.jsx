@@ -7,32 +7,39 @@ import {
    removeCartItem
 } from "../../redux/cart/cart.actions";
 
-import "./checkout-item.styles.scss";
+import {
+   CheckoutItemContainer,
+   ItemImg,
+   ItemName,
+   ItemControl,
+   ItemQuantity
+} from "./checkout-item";
 
-function CheckoutItem({
-   imageUrl,
-   name,
-   id,
-   price,
-   quantity,
-   increaseItemQuantity,
-   decreaseItemQuantity,
-   removeCartItem
-}) {
+const CheckoutItem = props => {
+   const {
+      imageUrl,
+      name,
+      id,
+      price,
+      quantity,
+      increaseItemQuantity,
+      decreaseItemQuantity,
+      removeCartItem
+   } = props;
    return (
-      <div className="checkout-item">
-         <img src={imageUrl} alt={name} />
-         <span className="name">{name}</span>
+      <CheckoutItemContainer>
+         <ItemImg src={imageUrl} alt={name} />
+         <ItemName>{name}</ItemName>
          <span className="price">{price}$</span>
-         <div className="item-control">
+         <ItemControl>
             <button onClick={() => increaseItemQuantity(id)}>&#10094;</button>
-            <span className="quantity">{quantity}</span>
+            <ItemQuantity>{quantity}</ItemQuantity>
             <button onClick={() => decreaseItemQuantity(id)}>&#10095;</button>
-         </div>
+         </ItemControl>
          <button onClick={() => removeCartItem(id)}>&#10005;</button>
-      </div>
+      </CheckoutItemContainer>
    );
-}
+};
 
 const mapDispatchToProps = dispatch => ({
    increaseItemQuantity: payload => dispatch(increaseItemQuantity(payload)),

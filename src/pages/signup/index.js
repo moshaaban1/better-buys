@@ -7,10 +7,10 @@ import Button from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.component";
 export default class SignUp extends Component {
    state = {
-      name: "ahmed",
-      email: "@gmail.com",
-      password: "123456",
-      confirmPassword: "123456"
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: ""
    };
 
    handleChange = e => {
@@ -59,7 +59,7 @@ export default class SignUp extends Component {
                         type="text"
                         name="name"
                         value={this.state.name}
-                        handleChange={this.handleChange}
+                        onChange={this.handleChange}
                         label="Name"
                         required
                      />
@@ -67,7 +67,7 @@ export default class SignUp extends Component {
                         type="email"
                         name="email"
                         value={this.state.email}
-                        handleChange={this.handleChange}
+                        onChange={this.handleChange}
                         label="Email"
                         required
                      />
@@ -75,7 +75,7 @@ export default class SignUp extends Component {
                         type="password"
                         name="password"
                         value={this.state.password}
-                        handleChange={this.handleChange}
+                        onChange={this.handleChange}
                         label="Password"
                         required
                      />
@@ -83,7 +83,7 @@ export default class SignUp extends Component {
                         type="password"
                         name="confirmPassword"
                         value={this.state.confirmPassword}
-                        handleChange={this.handleChange}
+                        onChange={this.handleChange}
                         label="Confirm Password"
                         required
                      />

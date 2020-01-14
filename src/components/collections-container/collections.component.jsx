@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { selectCollectionsByCount } from "../../redux/shop/shop.reselect";
 
 import Collection from "../collection-container/collection-container.component";
-import "./collections.styles.scss";
 
 const Collections = ({ collections }) => (
    <div className="collections-container">
