@@ -7,7 +7,7 @@ const NotFound = ({ location, history }) => (
    <NotFoundContainer>
       <PathName>{location.pathname} </PathName>
       <Title>404 NOT FOUND</Title>
-      <Button inverted clicked={() => history.push("/")}>
+      <Button inverted onClick={() => history.push("/")}>
          Back to Home Page
       </Button>
    </NotFoundContainer>

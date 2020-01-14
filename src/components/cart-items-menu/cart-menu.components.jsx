@@ -19,7 +19,6 @@ import {
 } from "./cart-menu.styles";
 
 function CartItemsMenu({ menuStatus, cartItems, handleToggleMenu, direction }) {
-   console.log(menuStatus);
    const history = useHistory();
 
    const handlePropagation = e => {
