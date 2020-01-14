@@ -7,15 +7,12 @@ import { db } from "./firebase.config";
 //    console.log(docs);
 // };
 
-const getCollections = () => {
-   const collectionRef = db.collection("collections");
-   return collectionRef.get();
-};
+const collectionsSnapshot = db.collection("collections").get();
 
-export const convertCollectionsSnapshotToMap = async () => {
-   const collectionsSnapshot = await getCollections();
+export const getCollectionsData = async () => {
+   const querySnapshot = await collectionsSnapshot;
 
-   collectionsSnapshot.docs.map(docSnapshot => {
+   const docs = querySnapshot.docs.map(docSnapshot => {
       const { title, items } = docSnapshot.data();
 
       return {
@@ -25,6 +22,11 @@ export const convertCollectionsSnapshotToMap = async () => {
          items
       };
    });
+
+   return docs.reduce((accumulator, collection) => {
+      accumulator[collection.title.toLowerCase()] = collection;
+      return accumulator;
+   }, {});
 };
 
 export const addCollectionAndDocuments = (collectionKey, objectToAdd) => {

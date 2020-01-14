@@ -9,7 +9,7 @@ const Collections = ({ collections }) => (
    <div className="collections-container">
       {collections.map(collection =>
          collection.items.length ? (
-            <Collection {...collection} key={"collection" + collection.title} />
+            <Collection {...collection} key={"collection" + collection.id} />
          ) : null
       )}
    </div>
