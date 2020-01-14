@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Container } from "@material-ui/core";
+
 import Button from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.component";
 import { signInWithGoogle, auth } from "../../firebase/firebase.utils";
@@ -49,7 +50,7 @@ export default class SignIn extends Component {
                         type="email"
                         name="email"
                         value={this.state.email}
-                        handleChange={this.handleChange}
+                        onChange={this.handleChange}
                         label="Email"
                         required
                      />
@@ -57,7 +58,7 @@ export default class SignIn extends Component {
                         type="password"
                         name="password"
                         value={this.state.password}
-                        handleChange={this.handleChange}
+                        onChange={this.handleChange}
                         label="Password"
                         required
                      />
