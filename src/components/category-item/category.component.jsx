@@ -1,20 +1,23 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import "./category.style.scss";
+
+import {
+   BoxOverFlowHidden,
+   CategoryContainer,
+   CategoryContent,
+   CategoryTitle
+} from "./category.styles";
 
 export default function Category({ imageUrl, title, linkUrl }) {
    let history = useHistory();
    return (
-      <div style={{ overflow: "hidden" }} onClick={() => history.push(linkUrl)}>
-         <div
-            className="category"
-            style={{ backgroundImage: `url(${imageUrl})` }}
-         >
-            <div className="content">
-               <div className="title">{title.toUpperCase()}</div>
+      <BoxOverFlowHidden onClick={() => history.push(linkUrl)}>
+         <CategoryContainer style={{ backgroundImage: `url(${imageUrl})` }}>
+            <CategoryContent>
+               <CategoryTitle>{title.toUpperCase()}</CategoryTitle>
                <span>SHOP NOW</span>
-            </div>
-         </div>
-      </div>
+            </CategoryContent>
+         </CategoryContainer>
+      </BoxOverFlowHidden>
    );
 }
