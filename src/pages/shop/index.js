@@ -21,7 +21,7 @@ class Shop extends React.Component {
       const collections = await getCollectionsData();
 
       this.props.handleUpdateCollections(collections);
-      // this.setState({ isLoading: false });
+      this.setState({ isLoading: false });
    }
 
    render() {

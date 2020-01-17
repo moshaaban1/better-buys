@@ -2,7 +2,6 @@
    "name": "react-ecommerce",
    "version": "0.1.0",
    "private": true,
-   "homepage": "https://mo7amedshaban1.github.io/react-ecommerce/",
    "dependencies": {
       "@material-ui/core": "^4.8.1",
       "@material-ui/icons": "^4.5.1",
@@ -10,7 +9,6 @@
       "@testing-library/react": "^9.3.2",
       "@testing-library/user-event": "^7.1.2",
       "firebase": "^7.6.1",
-      "gh-pages": "^2.1.1",
       "node-sass": "^4.13.0",
       "react": "^16.12.0",
       "react-dom": "^16.12.0",
