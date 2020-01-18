@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { Container } from "@material-ui/core";
+import { connect } from "react-redux";
+
+import { signInWithGoogle } from "../../firebase/firebase.auth";
+import { emailSignInAsync } from "../../redux/user/user.actions";
 
 import Button from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.component";
-import { signInWithGoogle, auth } from "../../firebase/firebase.auth";
-
 import "./index.styles.scss";
 
-const SignIn = () => {
+const SignIn = ({ emailSignInAsync }) => {
    const [inputValues, setInputValues] = useState({
       email: "",
       password: ""
@@ -20,14 +22,7 @@ const SignIn = () => {
 
    const handleSubmit = e => {
       e.preventDefault();
-      auth
-         .signInWithEmailAndPassword(inputValues.email, inputValues.password)
-         .then(res => {
-            console.log("Sign in successful");
-         })
-         .catch(error => {
-            console.log(error);
-         });
+      emailSignInAsync(inputValues);
    };
 
    const handleSignInWithGoogle = () => {
@@ -74,4 +69,11 @@ const SignIn = () => {
    );
 };
 
-export default SignIn;
+const mapDispatchToProps = dispatch => ({
+   emailSignInAsync: payload => dispatch(emailSignInAsync(payload))
+});
+
+export default connect(
+   null,
+   mapDispatchToProps
+)(SignIn);
