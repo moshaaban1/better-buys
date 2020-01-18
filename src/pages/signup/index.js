@@ -1,51 +1,34 @@
 import React, { useState } from "react";
 import { Container } from "@material-ui/core";
+import { connect } from "react-redux";
 
-import { auth, createUserProfile } from "../../firebase/firebase.auth";
+import { signUpWithEmailAndPassword } from "../../redux/user/user.actions";
 
 import Button from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.component";
 
-const SignUp = () => {
+const SignUp = ({ signUpWithEmailAndPassword }) => {
    const [inputValues, setInputValues] = useState({
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: ""
+      displayName: "mohamed",
+      email: "mohamed20@gmail.com",
+      password: "123456",
+      confirmPassword: "123456"
    });
+
+   const { displayName, email, password, confirmPassword } = inputValues;
 
    const handleChange = e => {
       var { value, name } = e.target;
       setInputValues({ ...inputValues, [name]: value });
    };
 
-   const handleSubmit = async e => {
+   const handleSubmit = e => {
       e.preventDefault();
-
-      const { name, email, password, confirmPassword } = this.state;
-
       if (password !== confirmPassword) {
          console.log("Password doesn't match");
          return;
       }
-
-      try {
-         const { user } = await auth.createUserWithEmailAndPassword(
-            email,
-            password
-         );
-
-         Object.defineProperties(user, {
-            displayName: {
-               value: name,
-               writable: true
-            }
-         });
-
-         createUserProfile(user);
-      } catch (error) {
-         console.error(error);
-      }
+      signUpWithEmailAndPassword(inputValues);
    };
 
    return (
@@ -56,8 +39,8 @@ const SignUp = () => {
             <form className="form" onSubmit={handleSubmit}>
                <FormInput
                   type="text"
-                  name="name"
-                  value={inputValues.name}
+                  name="displayName"
+                  value={inputValues.displayName}
                   onChange={handleChange}
                   label="Name"
                   required
@@ -95,4 +78,12 @@ const SignUp = () => {
    );
 };
 
-export default SignUp;
+const mapDispatchToProps = dispatch => ({
+   signUpWithEmailAndPassword: payload =>
+      dispatch(signUpWithEmailAndPassword(payload))
+});
+
+export default connect(
+   null,
+   mapDispatchToProps
+)(SignUp);

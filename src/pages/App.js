@@ -21,7 +21,7 @@ const theme = createMuiTheme(Theme);
 
 class App extends React.Component {
    componentDidMount() {
-      auth.onAuthStateChanged(userAuth => {
+      this.unsubscribeForm = auth.onAuthStateChanged(userAuth => {
          if (userAuth) {
             createUserProfile(userAuth).then(userRef => {
                userRef.onSnapshot(snapShot => {
@@ -30,6 +30,10 @@ class App extends React.Component {
             });
          }
       });
+   }
+
+   componentWillUnmount() {
+      this.unsubscribeForm();
    }
 
    render() {

@@ -10,23 +10,24 @@ provider.setCustomParameters({
 
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
-export const createUserProfile = async userAuth => {
+export const createUserProfile = async (userAuth, additionalData) => {
    if (!userAuth) return;
-
-   const userProfile = {
-      name: userAuth.displayName || null,
-      email: userAuth.email || null,
-      phoneNumber: userAuth.phoneNumber || null,
-      createdAt: new Date()
-   };
 
    const userRef = firestore.doc(`/users/${userAuth.uid}`);
 
    const snapShot = await userRef.get();
 
    if (!snapShot.exists) {
+      const { displayName, email } = userAuth;
+      const createdAt = new Date();
+
       try {
-         await userRef.set(userProfile);
+         await userRef.set({
+            displayName,
+            email,
+            createdAt,
+            ...additionalData
+         });
       } catch (error) {
          console.log("Error creating user", error.message);
       }

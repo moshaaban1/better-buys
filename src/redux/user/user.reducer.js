@@ -16,7 +16,8 @@ const userReducer = (state = INITIAL_STATE, action) => {
       case types.EMAIL_SIGN_IN_START:
          return {
             ...state,
-            isLogging: true
+            isLogging: true,
+            errorMessage: undefined
          };
       case types.EMAIL_SIGN_IN_SUCCESS:
          return {
