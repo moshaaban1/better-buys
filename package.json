@@ -20,6 +20,7 @@
       "redux": "^4.0.5",
       "redux-logger": "^3.0.6",
       "redux-persist": "^6.0.0",
+      "redux-thunk": "^2.3.0",
       "reselect": "^4.0.0",
       "styled-components": "^4.4.1"
    },
@@ -27,9 +28,7 @@
       "start": "react-scripts start",
       "build": "react-scripts build",
       "test": "react-scripts test",
-      "eject": "react-scripts eject",
-      "predeploy": "npm run build",
-      "deploy": "gh-pages -d build"
+      "eject": "react-scripts eject"
    },
    "eslintConfig": {
       "extends": "react-app"
