@@ -1,6 +1,6 @@
 import types from "./user.types";
 
-import { auth } from "../../firebase/firebase.auth";
+import { auth, signInWithGoogle } from "../../firebase/firebase.auth";
 
 const emailSignInStart = () => ({
    type: types.EMAIL_SIGN_IN_START
@@ -25,7 +25,18 @@ export const emailSignInAsync = inputValues => dispatch => {
    const { email, password } = inputValues;
    auth
       .signInWithEmailAndPassword(email, password)
-      .then(res => {
+      .then(success => {
+         dispatch(emailSignInSuccess());
+      })
+      .catch(error => {
+         dispatch(emailSignInFailure(error.message));
+      });
+};
+
+export const signInWithGoogleAsync = () => dispatch => {
+   dispatch(emailSignInStart());
+   signInWithGoogle()
+      .then(success => {
          dispatch(emailSignInSuccess());
       })
       .catch(error => {

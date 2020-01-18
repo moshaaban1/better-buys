@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { Container } from "@material-ui/core";
 import { connect } from "react-redux";
 
-import { signInWithGoogle } from "../../firebase/firebase.auth";
-import { emailSignInAsync } from "../../redux/user/user.actions";
+import {
+   emailSignInAsync,
+   signInWithGoogleAsync
+} from "../../redux/user/user.actions";
 
 import Button from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.component";
 import "./index.styles.scss";
 
-const SignIn = ({ emailSignInAsync }) => {
+const SignIn = ({ emailSignInAsync, signInWithGoogle }) => {
    const [inputValues, setInputValues] = useState({
       email: "",
       password: ""
@@ -23,16 +25,6 @@ const SignIn = ({ emailSignInAsync }) => {
    const handleSubmit = e => {
       e.preventDefault();
       emailSignInAsync(inputValues);
-   };
-
-   const handleSignInWithGoogle = () => {
-      signInWithGoogle()
-         .then(result => {
-            console.log("Sign in successful");
-         })
-         .catch(error => {
-            console.log(error);
-         });
    };
 
    return (
@@ -61,7 +53,7 @@ const SignIn = ({ emailSignInAsync }) => {
                   sign in
                </Button>
             </form>
-            <Button primary full onClick={handleSignInWithGoogle}>
+            <Button primary full onClick={signInWithGoogle}>
                sign in with google
             </Button>
          </div>
@@ -70,7 +62,8 @@ const SignIn = ({ emailSignInAsync }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-   emailSignInAsync: payload => dispatch(emailSignInAsync(payload))
+   emailSignInAsync: payload => dispatch(emailSignInAsync(payload)),
+   signInWithGoogle: () => dispatch(signInWithGoogleAsync())
 });
 
 export default connect(
