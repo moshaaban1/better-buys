@@ -1,4 +1,4 @@
-import firebase, { db } from "./firebase.config";
+import firebase, { firestore } from "./firebase.config";
 
 export const auth = firebase.auth();
 
@@ -20,7 +20,7 @@ export const createUserProfile = async userAuth => {
       createdAt: new Date()
    };
 
-   const userRef = db.doc(`/users/${userAuth.uid}`);
+   const userRef = firestore.doc(`/users/${userAuth.uid}`);
 
    const snapShot = await userRef.get();
 
