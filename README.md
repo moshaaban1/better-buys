@@ -10,7 +10,8 @@ A simple modern e-commerce app built with react, redux and react ecosystem
 -  install all project dependencies with `npm install` or `yarn install`
 -  start the development server with `npm start` or `yarn start`
 
-## Online version
+<!-- ## Online version -->
 
--  I've deployed the app into a free dyno host on heroku and you can check it out from [here](aa)
--  This would be a good idea to check the app out and let me know
+<!-- -  I've deployed the app into a free dyno host on heroku and you can check it out from [here](aa) -->
+
+<!-- -  This would be a good idea to check the app out and let me know -->

@@ -9,10 +9,10 @@ import FormInput from "../../components/form-input/form-input.component";
 
 const SignUp = ({ signUpWithEmailAndPassword }) => {
    const [inputValues, setInputValues] = useState({
-      displayName: "mohamed",
-      email: "mohamed20@gmail.com",
-      password: "123456",
-      confirmPassword: "123456"
+      displayName: "",
+      email: "",
+      password: "",
+      confirmPassword: ""
    });
 
    const { displayName, email, password, confirmPassword } = inputValues;
