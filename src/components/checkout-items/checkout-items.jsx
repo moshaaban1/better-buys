@@ -10,18 +10,22 @@ import "./checkout-items.styles.scss";
 
 function CheckoutItems({ cartItems }) {
    return (
-      <div className="checkout">
-         <ul className="checkout-header">
-            <li>product</li>
-            <li>description</li>
-            <li>quantity</li>
-            <li>price</li>
-            <li>remove</li>
-         </ul>
-         <div className="checkout-items">
-            {cartItems.length
-               ? cartItems.map(item => <CheckoutItem {...item} key={item.id} />)
-               : null}
+      <div className="checkout-scrollbar">
+         <div className="checkout">
+            <ul className="checkout-header">
+               <li>product</li>
+               <li>description</li>
+               <li>quantity</li>
+               <li>price</li>
+               <li>remove</li>
+            </ul>
+            <div className="checkout-items">
+               {cartItems.length
+                  ? cartItems.map(item => (
+                       <CheckoutItem {...item} key={item.id} />
+                    ))
+                  : null}
+            </div>
          </div>
       </div>
    );

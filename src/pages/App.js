@@ -13,6 +13,7 @@ import { selectUser } from "../redux/user/user.reselect";
 import { setCurrentUser } from "../redux/user/user.actions";
 
 import DefaultLayout from "../layouts/default";
+import GlobalStyle from "./GlobalStyle";
 import Theme from "./Theme";
 
 import routes from "../routes";
@@ -40,6 +41,7 @@ class App extends React.Component {
       return (
          <MuiThemeProvider theme={theme}>
             <CssBaseline />
+            <GlobalStyle />
             <BrowserRouter basename={process.env.PUBLIC_URL}>
                <DefaultLayout>
                   <Switch>

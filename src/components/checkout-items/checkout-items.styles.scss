@@ -1,7 +1,29 @@
 .checkout {
-    width: 70%;
+    width: 700px;
     margin: auto
 }
+
+.checkout-scrollbar {
+    overflow-x: auto;
+    width: 100%;
+    position: relative;
+
+    &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        background-color: #F5F5F5;
+    }
+
+    &::-webkit-scrollbar {
+        height: 4px;
+        background-color: #F5F5F5;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #000000;
+    }
+}
+
+
 
 .checkout-header {
     display: flex;
