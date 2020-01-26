@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { connect } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import {
    MuiThemeProvider,
@@ -11,8 +12,12 @@ import { auth, createUserProfile } from "../firebase/firebase.auth";
 import { selectUser } from "../redux/user/user.reselect";
 import { setCurrentUser } from "../redux/user/user.actions";
 
+import Spinner from "../components/spinner/spinner.component";
+import ErrorBoundary from "../components/error-boundary/error.boundary";
+
 import RoutesPages from "./routes-pages";
 import GlobalStyle from "./GlobalStyle";
+import DefaultLayout from "../layouts/default";
 import Theme from "./Theme";
 
 const theme = createMuiTheme(Theme);
@@ -39,7 +44,15 @@ class App extends React.Component {
          <MuiThemeProvider theme={theme}>
             <CssBaseline />
             <GlobalStyle />
-            <RoutesPages {...this.props} />
+            <BrowserRouter basename={process.env.PUBLIC_URL}>
+               <DefaultLayout>
+                  <ErrorBoundary>
+                     <Suspense fallback={<Spinner />}>
+                        <RoutesPages {...this.props} />
+                     </Suspense>
+                  </ErrorBoundary>
+               </DefaultLayout>
+            </BrowserRouter>
          </MuiThemeProvider>
       );
    }
