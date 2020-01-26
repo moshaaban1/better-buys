@@ -6,6 +6,7 @@ import { signUpWithEmailAndPassword } from "../../redux/user/user.actions";
 
 import Button from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.component";
+import { SignInContainer, SignInTitle } from "../signin/sign-in-styles";
 
 const SignUp = ({ signUpWithEmailAndPassword }) => {
    const [inputValues, setInputValues] = useState({
@@ -33,8 +34,8 @@ const SignUp = ({ signUpWithEmailAndPassword }) => {
 
    return (
       <Container>
-         <div className="sign-in">
-            <h2 className="title">I don't have an account</h2>
+         <SignInContainer>
+            <SignInTitle>I don't have an account</SignInTitle>
             <span>Register a new account</span>
             <form className="form" onSubmit={handleSubmit}>
                <FormInput
@@ -73,7 +74,7 @@ const SignUp = ({ signUpWithEmailAndPassword }) => {
                   Sign Up
                </Button>
             </form>
-         </div>
+         </SignInContainer>
       </Container>
    );
 };

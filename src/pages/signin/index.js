@@ -9,7 +9,7 @@ import {
 
 import Button from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.component";
-import "./index.styles.scss";
+import { SignInContainer, SignInTitle } from "./sign-in-styles";
 
 const SignIn = ({ emailSignInAsync, signInWithGoogle }) => {
    const [inputValues, setInputValues] = useState({
@@ -29,8 +29,8 @@ const SignIn = ({ emailSignInAsync, signInWithGoogle }) => {
 
    return (
       <Container>
-         <div className="sign-in">
-            <h2 className="title">I already have an account</h2>
+         <SignInContainer>
+            <SignInTitle>I already have an account</SignInTitle>
             <span>Sign in with your email and password</span>
             <form className="form" onSubmit={handleSubmit}>
                <FormInput
@@ -56,7 +56,7 @@ const SignIn = ({ emailSignInAsync, signInWithGoogle }) => {
             <Button primary full onClick={signInWithGoogle}>
                sign in with google
             </Button>
-         </div>
+         </SignInContainer>
       </Container>
    );
 };
