@@ -1,9 +1,11 @@
-import Home from "./pages/home/index";
-import Shop from "./pages/shop/index";
-import SignIn from "./pages/signin/index";
-import SignUp from "./pages/signup/index";
-import Checkout from "./pages/checkout/index";
-import NotFound from "./pages/404/index";
+import { lazy } from "react";
+
+const Home = lazy(() => import("./pages/home/index"));
+const Shop = lazy(() => import("./pages/shop/index"));
+const SignIn = lazy(() => import("./pages/signin/index"));
+const SignUp = lazy(() => import("./pages/signup/index"));
+const Checkout = lazy(() => import("./pages/checkout/index"));
+const NotFound = lazy(() => import("./pages/404/index"));
 
 const routes = [
    {
@@ -18,15 +20,18 @@ const routes = [
    {
       path: "/signIn",
       auth: true,
+      exact: true,
       component: SignIn
    },
    {
       path: "/signUp",
       auth: true,
+      exact: true,
       component: SignUp
    },
    {
       path: "/checkout",
+      exact: true,
       component: Checkout
    },
    {

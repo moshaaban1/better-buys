@@ -39,7 +39,7 @@ class App extends React.Component {
          <MuiThemeProvider theme={theme}>
             <CssBaseline />
             <GlobalStyle />
-            <RoutesPages />
+            <RoutesPages {...this.props} />
          </MuiThemeProvider>
       );
    }
