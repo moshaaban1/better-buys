@@ -15,7 +15,7 @@ const SignUp = ({ signUpWithEmailAndPassword }) => {
       confirmPassword: ""
    });
 
-   const { displayName, email, password, confirmPassword } = inputValues;
+   const { password, confirmPassword } = inputValues;
 
    const handleChange = e => {
       var { value, name } = e.target;

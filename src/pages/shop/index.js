@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 import { Container } from "@material-ui/core";
 import { connect } from "react-redux";
@@ -13,32 +13,30 @@ import WithSpinner from "../../components/with-spinner/with-spinner.component";
 
 const CollectionsWithSpinner = WithSpinner(Collections);
 const CollectionWithSpinner = WithSpinner(ShopCollection);
-class Shop extends React.Component {
-   componentDidMount() {
-      this.props.fetchCollectionsStartAsync();
-   }
 
-   render() {
-      const { match, isFetching } = this.props;
-      return (
-         <Container>
-            <Route
-               exact
-               path={match.path}
-               render={props => (
-                  <CollectionsWithSpinner isLoading={isFetching} {...props} />
-               )}
-            />
-            <Route
-               path={match.path + ":collectionId"}
-               render={props => (
-                  <CollectionWithSpinner isLoading={isFetching} {...props} />
-               )}
-            />
-         </Container>
-      );
-   }
-}
+const Shop = ({ fetchCollectionsStartAsync, isFetching, match }) => {
+   useEffect(() => {
+      fetchCollectionsStartAsync();
+   }, []);
+
+   return (
+      <Container>
+         <Route
+            exact
+            path={match.path}
+            render={props => (
+               <CollectionsWithSpinner isLoading={isFetching} {...props} />
+            )}
+         />
+         <Route
+            path={match.path + ":collectionId"}
+            render={props => (
+               <CollectionWithSpinner isLoading={isFetching} {...props} />
+            )}
+         />
+      </Container>
+   );
+};
 
 const mapDispatchToProps = dispatch => ({
    fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync())

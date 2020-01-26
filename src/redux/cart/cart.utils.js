@@ -17,6 +17,8 @@ export const increaseAndDecreaseHandler = (cartItems, cartItemId, type) => {
       if (item.id === cartItemId) {
          return type === "increase"
             ? { ...item, quantity: item.quantity + 1 }
+            : item.quantity <= 1
+            ? item
             : { ...item, quantity: item.quantity - 1 };
       } else {
          return item;

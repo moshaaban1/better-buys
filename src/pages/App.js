@@ -1,5 +1,4 @@
 import React from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import {
@@ -12,11 +11,9 @@ import { auth, createUserProfile } from "../firebase/firebase.auth";
 import { selectUser } from "../redux/user/user.reselect";
 import { setCurrentUser } from "../redux/user/user.actions";
 
-import DefaultLayout from "../layouts/default";
+import RoutesPages from "./routes-pages";
 import GlobalStyle from "./GlobalStyle";
 import Theme from "./Theme";
-
-import routes from "../routes";
 
 const theme = createMuiTheme(Theme);
 
@@ -42,29 +39,7 @@ class App extends React.Component {
          <MuiThemeProvider theme={theme}>
             <CssBaseline />
             <GlobalStyle />
-            <BrowserRouter basename={process.env.PUBLIC_URL}>
-               <DefaultLayout>
-                  <Switch>
-                     {routes.map((route, i) =>
-                        route.auth ? (
-                           <Route
-                              path={route.path}
-                              key={"route" + i}
-                              render={() =>
-                                 this.props.user ? (
-                                    <Redirect to="/" />
-                                 ) : (
-                                    <Route {...route} key={"route" + i} />
-                                 )
-                              }
-                           />
-                        ) : (
-                           <Route {...route} key={"route" + i} />
-                        )
-                     )}
-                  </Switch>
-               </DefaultLayout>
-            </BrowserRouter>
+            <RoutesPages />
          </MuiThemeProvider>
       );
    }
